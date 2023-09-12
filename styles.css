@@ -10,14 +10,11 @@ main {
 
 main .header {
     margin-top: 50px;
+    text-align: center;
 }
 
 main img {
     width: 50px;
-}
-
-main {
-    text-align: center;
 }
 
 main form {
@@ -26,11 +23,40 @@ main form {
     margin-top: 30px;
 }
 
+main form input {
+    border: 1px solid gray;
+}
+
 main form input, main form button {
     width: 100%;
     margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
 button {
     cursor: pointer;
+    background-color: #0751e4;
+    border: none;
+    color: #ffffff;
+    -webkit-transition: background-color .5s;
+    -moz-transition:    background-color .5s;
+    -ms-transition:     background-color .5s;
+    -o-transition:      background-color .5s;
+    transition:         background-color .5s;
 }
+
+button:hover {
+    background-color: #003cb3;
+}
+
+.fade:hover {
+    background-color: #004369;
+  }
+  
+  .fade:focus,
+  .fade:active {
+    background-color: black;
+    transition: none;
+  }
