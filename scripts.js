@@ -55,15 +55,17 @@ function joinSession() {
 
     window.ZoomUIToolKit.join();
 
+    document.getElementById('header').style.display = 'none'
     document.getElementById('join-flow').style.display = 'none'
 
     window.ZoomUIToolKit.subscribe("uitoolkit-destroy", () => {
-        document.getElementById('join-flow').style.display = 'inline'
+        document.getElementById('header').style.display = 'block'
+        document.getElementById('join-flow').style.display = 'block'
     })
 }
 
 function leaveSession() {
     window.ZoomUIToolKit.destroy();
-
-    document.getElementById('join-flow').style.display = 'inline'
+    document.getElementById('header').style.display = 'block'
+    document.getElementById('join-flow').style.display = 'block'
 }

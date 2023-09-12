@@ -1,3 +1,36 @@
-#closePreviewButton, #leaveSessionButton {
-    display: none;
+body {
+    height: auto;
+}
+
+main {
+    width: 80%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+main .header {
+    margin-top: 50px;
+}
+
+main img {
+    width: 50px;
+}
+
+main {
+    text-align: center;
+}
+
+main form {
+    width: 200px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+main form input, main form button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
 }
