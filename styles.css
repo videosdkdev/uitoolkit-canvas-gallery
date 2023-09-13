@@ -8,26 +8,26 @@ main {
     max-width: 1200px;
 }
 
-main .header {
+.header {
     margin-top: 50px;
     text-align: center;
 }
 
-main img {
+.header img {
     width: 50px;
 }
 
-main form {
+.join-flow {
     width: 200px;
     margin: auto;
     margin-top: 30px;
 }
 
-main form input {
+.join-flow input {
     border: 1px solid gray;
 }
 
-main form input, main form button {
+.join-flow input, .join-flow button {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
@@ -35,7 +35,7 @@ main form input, main form button {
     font-size: 16px;
 }
 
-button {
+.join-flow button {
     cursor: pointer;
     background-color: #0751e4;
     border: none;
@@ -47,16 +47,6 @@ button {
     transition:         background-color .5s;
 }
 
-button:hover {
+.join-flow button:hover {
     background-color: #003cb3;
 }
-
-.fade:hover {
-    background-color: #004369;
-  }
-  
-  .fade:focus,
-  .fade:active {
-    background-color: black;
-    transition: none;
-  }

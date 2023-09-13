@@ -30,7 +30,8 @@ function getVideoSDKJWT() {
         method: 'POST',
         body: JSON.stringify({
             sessionName:  UIToolKitConfig.sessionName,
-            role: 1
+            role: 1,
+            telemetryTrackingId: `tommy-ui-toolkit-${UIToolKitConfig.sessionName}`
         })
     }).then((response) => {
         return response.json()
