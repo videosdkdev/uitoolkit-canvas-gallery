@@ -8,6 +8,20 @@ main {
     max-width: 1200px;
 }
 
+#rating {
+    display: none;
+    text-align: center;
+}
+
+#rating a {
+    color: #0751e4;
+}
+
+#sessionNameRequired, #nameRequired, #passcodeLength {
+    color: red;
+    display: none;
+}
+
 .header {
     margin-top: 50px;
     text-align: center;

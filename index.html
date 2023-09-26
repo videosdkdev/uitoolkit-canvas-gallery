@@ -19,10 +19,19 @@
             </div>
             
             <form class="join-flow" id="join-flow">
-                <input type="text" placeholder="Session Name" id="sessionName">
-                <input type="text" placeholder="Session Passcode" id="sessionPasscode">
-                <input type="text" placeholder="Your Name" id="yourName">
+                <p id="sessionNameRequired">Session Name Required:</p>
+                <input type="text" placeholder="Session Name *" id="sessionName" autocomplete="off">
+                <p id="passcodeLength">Passcode can't be longer than 10 characters:</p>
+                <input type="text" placeholder="Session Passcode" id="sessionPasscode" maxlength="10" autocomplete="off">
+                <p id="nameRequired">Your Name Required:</p>
+                <input type="text" placeholder="Your Name *" id="yourName">
                 <button type="button" onClick="getVideoSDKJWT()" id="joinSessionButton">Join Session</button>
+
+                <div id="rating">
+                    <p>Thanks for joining!</p>
+                    <a href="https://success.zoom.us/survey/f9h8evMBr0EJ4L2fO4ndgCuZj_jeQQ4GoWzQLkUDFFuherGHvwk.IjLfya3ooOVAJpiP/view?id=4V9k0_ctQeOpqAxETx75sQ#/sharePreview" target="_blank"> Click here to rate your experience.</a>
+                </div>
+                
             </form>
 
             <div id='UIToolkit'></div>
