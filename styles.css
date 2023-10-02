@@ -64,3 +64,13 @@ main {
 .join-flow button:hover {
     background-color: #003cb3;
 }
+
+.join-flow small {
+    text-align: center;
+    display: block;
+    
+}
+
+.join-flow small a {
+    color: #0751e4;
+}
