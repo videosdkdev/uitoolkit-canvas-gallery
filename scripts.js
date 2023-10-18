@@ -2,6 +2,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const preSetSession = urlParams.get('session');
 const preSetpasscode = urlParams.get('passcode');
 
+const sessionContainer = document.getElementById('UIToolkit')
+var uitoolKit;
+
 if(preSetSession) {
     // set session in inputs
     document.getElementById('sessionName').value = preSetSession
@@ -36,7 +39,7 @@ function closePreview() {
 }
 
 function getVideoSDKJWT() {
-
+    uitoolKit = document.createElement('app-uitoolkit')
     document.getElementById('nameRequired').style.display = 'none'
     document.getElementById('sessionNameRequired').style.display = 'none'
     document.getElementById('passcodeLength').style.display = 'none'
@@ -74,30 +77,30 @@ function getVideoSDKJWT() {
     }
 }
 
+var sessionClosed = (() => {
+    console.log('session closed')
+    uitoolKit.removeEventListener('sessionClosed', sessionClosed)
+    sessionContainer.removeChild(uitoolKit)
+    document.getElementById('header').style.display = 'block'
+    document.getElementById('join-flow').style.display = 'block'
+    document.getElementById('rating').style.display = 'block'
+})
+
 function joinSession() {
 
-    let UIToolKit = document.createElement('app-uitoolkit');
-
-    document.getElementById('UIToolkit').append(UIToolKit);
-
-    console.log(window)
-
-    window.ZoomUIToolKit.init(UIToolKitConfig);
-
-    window.ZoomUIToolKit.join();
+    uitoolKit.setAttribute("config", JSON.stringify(UIToolKitConfig))
+    sessionContainer.append(uitoolKit)
 
     document.getElementById('header').style.display = 'none'
     document.getElementById('join-flow').style.display = 'none'
 
-    window.ZoomUIToolKit.subscribe("uitoolkit-destroy", () => {
-        document.getElementById('header').style.display = 'block'
-        document.getElementById('join-flow').style.display = 'block'
-        document.getElementById('rating').style.display = 'block'
-    })
+    // uitoolkit.onSessionClosed(sessionClosed)
+    uitoolKit.addEventListener('sessionClosed', sessionClosed)
 }
 
 function leaveSession() {
-    window.ZoomUIToolKit.destroy();
+    uitoolKit.removeEventListener('sessionClosed', sessionClosed)
+    sessionContainer.removeChild(uitoolKit)
     document.getElementById('header').style.display = 'block'
     document.getElementById('join-flow').style.display = 'block'
     document.getElementById('rating').style.display = 'block'
