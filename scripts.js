@@ -1,9 +1,10 @@
+import uitoolkit from './@zoom/videosdk-ui-toolkit/index.js'
+
 const urlParams = new URLSearchParams(window.location.search);
 const preSetSession = urlParams.get('session');
 const preSetpasscode = urlParams.get('passcode');
 
-const sessionContainer = document.getElementById('UIToolkit')
-var uitoolKit;
+const sessionContainer = document.getElementById('sessionContainer')
 
 if(preSetSession) {
     // set session in inputs
@@ -19,89 +20,67 @@ if(preSetpasscode) {
     }
 }
 
-var UIToolKitConfig = {
-    features: ['video', 'audio', 'settings', 'users', 'share', 'chat'],
-    advancedTelemetry: true
-}
+var config = {
+    videoSDKJWT: '',
+    sessionName: 'SessionA',
+    userName: 'UserA',
+    sessionPasscode: 'abc123',
+    features: ['video', 'audio', 'settings', 'users', 'chat', 'share']
+};
 
-function openPreview() {
-    let PreviewKit = document.createElement('app-previewkit');
-    
-    document.getElementById('PreviewKit').append(PreviewKit);
-
-    document.getElementById('join-flow').style.display = 'none'
-}
-
-function closePreview() {
-    document.getElementsByTagName('app-previewkit')[0].remove()
-
-    document.getElementById('join-flow').style.display = 'inline'
-}
+window.getVideoSDKJWT = getVideoSDKJWT
 
 function getVideoSDKJWT() {
-    uitoolKit = document.createElement('app-uitoolkit')
     document.getElementById('nameRequired').style.display = 'none'
     document.getElementById('sessionNameRequired').style.display = 'none'
     document.getElementById('passcodeLength').style.display = 'none'
     document.getElementById('rating').style.display = 'none'
     
-    UIToolKitConfig.userName = document.getElementById('yourName').value
-    UIToolKitConfig.sessionName = document.getElementById('sessionName').value
-    UIToolKitConfig.sessionPasscode = document.getElementById('sessionPasscode').value
+    config.userName = document.getElementById('yourName').value
+    config.sessionName = document.getElementById('sessionName').value
+    config.sessionPasscode = document.getElementById('sessionPasscode').value
 
-    if(UIToolKitConfig.userName && UIToolKitConfig.sessionName) {
+    if(config.userName && config.sessionName) {
         fetch('https://or116ttpz8.execute-api.us-west-1.amazonaws.com/default/videosdk', {
             method: 'POST',
             body: JSON.stringify({
-                sessionName:  UIToolKitConfig.sessionName,
+                sessionName:  config.sessionName,
                 role: 1,
-                telemetryTrackingId: `tommy-ui-toolkit-${UIToolKitConfig.sessionName}-${UIToolKitConfig.userName}-${Date.now()}`
+                telemetryTrackingId: `tommy-ui-toolkit-${config.sessionName}-${config.userName}-${Date.now()}`
             })
         }).then((response) => {
             return response.json()
         }).then((data) => {
             console.log(data)
-            UIToolKitConfig.videoSDKJWT = data.signature
+            config.videoSDKJWT = data.signature
             joinSession()
         }).catch((error) => {
             console.log(error)
         })
     } else {
-        if(!UIToolKitConfig.userName) {
+        if(!config.userName) {
             document.getElementById('nameRequired').style.display = 'block'
         }
 
-        if(!UIToolKitConfig.sessionName) {
+        if(!config.sessionName) {
             document.getElementById('sessionNameRequired').style.display = 'block'
         }
     }
 }
 
-var sessionClosed = (() => {
-    console.log('session closed')
-    uitoolKit.removeEventListener('sessionClosed', sessionClosed)
-    sessionContainer.removeChild(uitoolKit)
-    document.getElementById('header').style.display = 'block'
-    document.getElementById('join-flow').style.display = 'block'
-    document.getElementById('rating').style.display = 'block'
-})
-
 function joinSession() {
-
-    uitoolKit.setAttribute("config", JSON.stringify(UIToolKitConfig))
-    sessionContainer.append(uitoolKit)
+    uitoolkit.joinSession(sessionContainer, config)
 
     document.getElementById('header').style.display = 'none'
     document.getElementById('join-flow').style.display = 'none'
 
-    // uitoolkit.onSessionClosed(sessionClosed)
-    uitoolKit.addEventListener('sessionClosed', sessionClosed)
+    uitoolkit.onSessionClosed(sessionClosed)
 }
 
-function leaveSession() {
-    uitoolKit.removeEventListener('sessionClosed', sessionClosed)
-    sessionContainer.removeChild(uitoolKit)
+var sessionClosed = (() => {
+    console.log('session closed')
+    uitoolkit.closeSession(sessionContainer)
     document.getElementById('header').style.display = 'block'
     document.getElementById('join-flow').style.display = 'block'
     document.getElementById('rating').style.display = 'block'
-}
+})
