@@ -45,7 +45,7 @@ function getVideoSDKJWT() {
             method: 'POST',
             body: JSON.stringify({
                 sessionName:  config.sessionName,
-                role: 1,
+                role: parseInt(document.getElementById('role').value),
                 telemetryTrackingId: `tommy-ui-toolkit-${config.sessionName}-${config.userName}-${Date.now()}`
             })
         }).then((response) => {

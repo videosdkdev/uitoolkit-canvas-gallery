@@ -46,7 +46,7 @@ main {
     border: 1px solid gray;
 }
 
-.join-flow input, .join-flow button {
+.join-flow input, .join-flow button, select {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;

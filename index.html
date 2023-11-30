@@ -15,7 +15,6 @@
             <div class="header" id="header">
                 <img src="favicon.ico" alt="">
                 <h1>Zoom Video SDK UI toolkit</h1>
-                <p>Created by Tommy Gaessler and Ticorrian Heard</p>
             </div>
             
             <form class="join-flow" id="join-flow">
@@ -25,6 +24,12 @@
                 <input type="text" placeholder="Session Passcode" id="sessionPasscode" maxlength="10" autocomplete="off">
                 <p id="nameRequired">Your Name Required:</p>
                 <input type="text" placeholder="Your Name *" id="yourName">
+
+                <select id="role">
+                    <option value="0">Role: User</option>
+                    <option value="1">Role: Host</option>
+                </select>
+
                 <button type="button" onClick="getVideoSDKJWT()" id="joinSessionButton">Join Session</button>
                 <small>(<a href="https://developers.zoom.us/docs/video-sdk/web/gallery-view/" target="_blank">SharedArrayBuffer enabled</a>)</small>
 
