@@ -20,6 +20,8 @@ if(preSetpasscode) {
     }
 }
 
+var authEndpoint = 'https://or116ttpz8.execute-api.us-west-1.amazonaws.com/default/videosdk'
+
 var config = {
     videoSDKJWT: '',
     sessionName: 'SessionA',
@@ -41,7 +43,7 @@ function getVideoSDKJWT() {
     config.sessionPasscode = document.getElementById('sessionPasscode').value
 
     if(config.userName && config.sessionName) {
-        fetch('https://or116ttpz8.execute-api.us-west-1.amazonaws.com/default/videosdk', {
+        fetch(authEndpoint, {
             method: 'POST',
             body: JSON.stringify({
                 sessionName:  config.sessionName,
