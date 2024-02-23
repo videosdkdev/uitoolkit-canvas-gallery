@@ -27,7 +27,8 @@ var config = {
     sessionName: 'SessionA',
     userName: 'UserA',
     sessionPasscode: 'abc123',
-    features: ['video', 'audio', 'settings', 'users', 'chat', 'share']
+    features: ['video', 'audio', 'settings', 'users', 'chat', 'share'],
+    advancedTelemetry: true
 };
 
 window.getVideoSDKJWT = getVideoSDKJWT
